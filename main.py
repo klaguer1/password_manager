@@ -1,8 +1,11 @@
+#! /usr/bin/env python3
+
 from tkinter import *  
 from tkinter import messagebox
 from random import choice, randint, shuffle
 import json
 import pyperclip
+import argparse
 
 #To DO: Assuming the website exists put in a feature that finds the website even if the .com or .org is missing. 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -71,43 +74,60 @@ def save_password():
                 siteEntry.delete(0, END)
                 passwordEntry.delete(0, END)
 
+# ---------------------------- ARG PARSE ------------------------------- #  
+def parse_args():
+    parser = argparse.ArgumentParser(description='Generate a secure password') 
+    subparsers = parser.add_subparsers(help='commands', dest='command') 
+
+    # COMMANDS
+    # headless
+    subparsers.add_parser('headless', help='Run without GUI') 
+
+    return parser.parse_args(), parser
+
+args, parser = parse_args()
+
+if args.command == 'headless':
+     print('Running headless...')
+    #  parser.print_usage()
+     parser.print_help()
+else:
 # ---------------------------- UI SETUP ------------------------------- #  
+    window = Tk()
+    window.title("Password Manager")
+    window.config(padx = 50, pady = 50)
 
-window = Tk()
-window.title("Password Manager")
-window.config(padx = 50, pady = 50)
+    #Lock Icon 
+    canvas = Canvas(width = 200, height = 200, highlightthickness = 0)
+    lock = PhotoImage(file="logo.png")
+    canvas.create_image(100, 100, image = lock)
+    canvas.grid(row = 0, column = 1)
 
-#Lock Icon 
-canvas = Canvas(width = 200, height = 200, highlightthickness = 0)
-lock = PhotoImage(file="logo.png")
-canvas.create_image(100, 100, image = lock)
-canvas.grid(row = 0, column = 1)
+    #Labels 
+    website = Label(text = "Website:") 
+    website.grid(row = 1, column = 0)
+    contact = Label(text = "Email/Username:")
+    contact.grid(row = 2, column = 0) 
+    password = Label(text = "Password:")
+    password.grid(row = 3, column = 0) 
 
-#Labels 
-website = Label(text = "Website:") 
-website.grid(row = 1, column = 0)
-contact = Label(text = "Email/Username:")
-contact.grid(row = 2, column = 0) 
-password = Label(text = "Password:")
-password.grid(row = 3, column = 0) 
+    #Entry Fields 
+    siteEntry = Entry(width = 21)
+    siteEntry.focus()
+    siteEntry.grid(row = 1, column = 1) 
+    contactEntry = Entry(width = 35)
+    contactEntry.insert(0, "kevinlaguerre7689@gmail.com")
+    contactEntry.grid(row = 2, column = 1, columnspan = 2) 
+    passwordEntry = Entry(width = 21) 
+    passwordEntry.grid(row = 3, column = 1) 
 
-#Entry Fields 
-siteEntry = Entry(width = 21)
-siteEntry.focus()
-siteEntry.grid(row = 1, column = 1) 
-contactEntry = Entry(width = 35)
-contactEntry.insert(0, "kevinlaguerre7689@gmail.com")
-contactEntry.grid(row = 2, column = 1, columnspan = 2) 
-passwordEntry = Entry(width = 21) 
-passwordEntry.grid(row = 3, column = 1) 
-
-#Buttons 
-getPassword = Button(text = "Generate Password", command = generate_passsword)
-getPassword.grid(row = 3, column = 2)
-add = Button(text = "Add", width = 36, command = save_password)
-add.grid(row = 4, column = 1, columnspan = 2)  
-search = Button(text = "Search", command = get_info, width = 13) 
-search.grid(row = 1, column = 2)
+    #Buttons 
+    getPassword = Button(text = "Generate Password", command = generate_passsword)
+    getPassword.grid(row = 3, column = 2)
+    add = Button(text = "Add", width = 36, command = save_password)
+    add.grid(row = 4, column = 1, columnspan = 2)  
+    search = Button(text = "Search", command = get_info, width = 13) 
+    search.grid(row = 1, column = 2)
 
 
-window.mainloop()
+    window.mainloop()
