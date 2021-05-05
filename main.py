@@ -27,7 +27,7 @@ def generate_passsword():
 def get_info():
     user_input = siteEntry.get()
     try: 
-        with open("password_manager/data.json", "r") as file:
+        with open("data.json", "r") as file:
             passwords = json.load(file)    
             selected_password = passwords[user_input]
             messagebox.showinfo(title = "Password", 
@@ -55,16 +55,16 @@ def save_password():
         "These are the details entered: \nWebsite: {} \nEmail: {}, \nPassword: {} \n Is this ok to save?".format(siteValue, contactValue, passwordValue)) 
         if is_ok:
             try:
-                with open("password_manager/data.json", "r") as data_file:
+                with open("data.json", "r") as data_file:
                     #Reading old data
                     data = json.load(data_file)
             except FileNotFoundError:
-                with open("password_manager/data.json", "w") as data_file:
+                with open("data.json", "w") as data_file:
                     json.dump(new_data, data_file, indent=4)
             else:
                 #Updating old data with new data
                 data.update(new_data)
-                with open("password_manager/data.json", "w") as data_file:
+                with open("data.json", "w") as data_file:
                     #Saving updated data
                     json.dump(data, data_file, indent=4)
             finally:
@@ -79,7 +79,7 @@ window.config(padx = 50, pady = 50)
 
 #Lock Icon 
 canvas = Canvas(width = 200, height = 200, highlightthickness = 0)
-lock = PhotoImage(file="password_manager/logo.png")
+lock = PhotoImage(file="logo.png")
 canvas.create_image(100, 100, image = lock)
 canvas.grid(row = 0, column = 1)
 
