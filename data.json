@@ -46,5 +46,17 @@
     "Testing123": {
         "email": "TestEmail@gmail.com",
         "password": "LGidy0&*U$5+rhas"
+    },
+    "Aws": {
+        "email": "kevinlaguerre7689@gmail.com",
+        "password": "F$U589$jcx+T5xT"
+    },
+    "newValue": {
+        "email": "kevinlaguerre7689@gmail.com",
+        "password": "F#6mO1Q!HnpnB)"
+    },
+    "val1": {
+        "email": "kevinlaguerre7689@gmail.com",
+        "password": "9(msBxv7(twb10"
     }
 }
