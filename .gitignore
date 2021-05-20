@@ -99,6 +99,7 @@ __pypackages__/
 
 # password_manager.py
 *.json
+*.txt
 
 # Celery stuff
 celerybeat-schedule
