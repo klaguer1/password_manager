@@ -34,7 +34,7 @@ class DesktopApp(tk.Frame):
         self.siteEntry.grid(row = 1, column = 1) 
 
         self.contactEntry = tk.Entry(width = 35)
-        self.contactEntry.insert(0, "kevinlaguerre7689@gmail.com")
+        self.contactEntry.insert(0, "dummyemail@gmail.com ")
         self.contactEntry.grid(row = 2, column = 1, columnspan = 2) 
 
         self.passwordEntry = tk.Entry(width = 21) 
